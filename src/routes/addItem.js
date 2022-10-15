@@ -5,6 +5,7 @@ module.exports = async (req, res) => {
     const item = {
         id: uuid(),
         name: req.body.name,
+        color: req.body.color,
         completed: false,
     };
 

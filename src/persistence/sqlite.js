@@ -18,7 +18,7 @@ function init() {
                 console.log(`Using sqlite database at ${location}`);
 
             db.run(
-                'CREATE TABLE IF NOT EXISTS todo_items (id varchar(36), name varchar(255), completed boolean)',
+                'CREATE TABLE IF NOT EXISTS todo_items (id varchar(36), name varchar(255), completed boolean, color varchar(255))',
                 (err, result) => {
                     if (err) return rej(err);
                     acc();
@@ -45,6 +45,7 @@ async function getItems() {
                 rows.map(item =>
                     Object.assign({}, item, {
                         completed: item.completed === 1,
+                        color: item.color
                     }),
                 ),
             );
@@ -60,6 +61,7 @@ async function getItem(id) {
                 rows.map(item =>
                     Object.assign({}, item, {
                         completed: item.completed === 1,
+                        color: item.color
                     }),
                 )[0],
             );
@@ -70,8 +72,8 @@ async function getItem(id) {
 async function storeItem(item) {
     return new Promise((acc, rej) => {
         db.run(
-            'INSERT INTO todo_items (id, name, completed) VALUES (?, ?, ?)',
-            [item.id, item.name, item.completed ? 1 : 0],
+            'INSERT INTO todo_items (id, name, completed, color) VALUES (?, ?, ?, ?)',
+            [item.id, item.name, item.completed ? 1 : 0, item.color],
             err => {
                 if (err) return rej(err);
                 acc();
@@ -83,8 +85,8 @@ async function storeItem(item) {
 async function updateItem(id, item) {
     return new Promise((acc, rej) => {
         db.run(
-            'UPDATE todo_items SET name=?, completed=? WHERE id = ?',
-            [item.name, item.completed ? 1 : 0, id],
+            'UPDATE todo_items SET name=?, completed=?, color=? WHERE id = ?',
+            [item.name, item.completed ? 1 : 0, item.color, id],
             err => {
                 if (err) return rej(err);
                 acc();

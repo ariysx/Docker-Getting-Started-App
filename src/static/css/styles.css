@@ -1,7 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
 body {
     background-color: #f4f4f4;
     margin-top: 50px;
-    font-family: 'Lato';
+    font-family: 'Poppins', sans-serif;
+}
+
+.fw-700 {
+    font-weight: 700;
 }
 
 .item {
@@ -36,4 +42,28 @@ body {
 
 button:focus {
     border: 1px solid #333;
+}
+
+.white {
+    background: white;
+}
+
+.red {
+    background: rgba(205, 92, 92, 0.5);
+}
+
+.yellow {
+    background: rgba(255, 255, 0, 0.5);
+}
+
+.green {
+    background: rgba(144, 238, 144, 0.5);
+}
+
+.blue {
+    background: rgba(135, 206, 250, 0.5);
+}
+
+.purple {
+    background: rgba(147, 112, 219, 0.5);
 }
