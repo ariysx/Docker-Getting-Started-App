@@ -103,7 +103,7 @@ async function updateItem(id, item) {
     return new Promise((acc, rej) => {
         pool.query(
             'UPDATE todo_items SET name=?, completed=?, color=? WHERE id=?',
-            [item.name, item.completed ? 1 : 0, id, item.color],
+            [item.name, item.completed ? 1 : 0, item.color, id],
             err => {
                 if (err) return rej(err);
                 acc();
